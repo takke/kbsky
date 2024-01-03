@@ -1,6 +1,6 @@
 plugins {
-    kotlin("multiplatform") version "1.9.22"
-    kotlin("plugin.serialization") version "1.9.22"
+    kotlin("multiplatform")
+    kotlin("plugin.serialization") version "1.9.20"
     id("maven-publish")
 }
 
@@ -8,9 +8,9 @@ kotlin {
     jvmToolchain(17)
 
     jvm { withJava() }
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
+//    iosX64()
+//    iosArm64()
+//    iosSimulatorArm64()
     macosX64()
     macosArm64()
 
