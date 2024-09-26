@@ -40,7 +40,7 @@ class _ActorResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, ActorSearchActors))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
@@ -56,7 +56,7 @@ class _ActorResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, ActorGetProfile))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
@@ -126,7 +126,7 @@ class _ActorResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, ActorGetProfiles))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .accept(MediaType.JSON)
                     .also {
                         request.actors?.forEach { actor ->
@@ -146,7 +146,7 @@ class _ActorResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, ActorGetPreferences))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()

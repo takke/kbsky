@@ -47,7 +47,7 @@ class _RepoResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, RepoCreateRecord))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())
                     .post()
@@ -63,7 +63,7 @@ class _RepoResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, RepoDeleteRecord))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())
                     .post()
@@ -124,7 +124,7 @@ class _RepoResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, RepoPutRecord))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())
                     .post()
@@ -140,7 +140,7 @@ class _RepoResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, RepoUploadBlob))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .header("Content-Type", request.contentType)
                     .accept(MediaType.JSON)
                     .file(

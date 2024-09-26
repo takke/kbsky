@@ -1,6 +1,6 @@
 package work.socialhub.kbsky.internal.app.bsky
 
-import io.ktor.http.*
+import io.ktor.http.URLBuilder
 import kotlinx.coroutines.runBlocking
 import work.socialhub.kbsky.ATProtocolException
 import work.socialhub.kbsky.ATProtocolTypes
@@ -135,6 +135,6 @@ class _VideoResource(
                     )
                 )
 
-        return AuthRequest(videoTokenResponse.data.token).bearerToken
+        return AuthRequest(videoTokenResponse.data.token).authorizationHeader
     }
 }

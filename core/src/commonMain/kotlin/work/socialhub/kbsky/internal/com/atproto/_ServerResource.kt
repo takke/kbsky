@@ -61,7 +61,7 @@ class _ServerResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, ServerDeleteSession))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .accept(MediaType.JSON)
                     .post()
             }
@@ -79,7 +79,7 @@ class _ServerResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, ServerGetServiceAuth))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
@@ -94,7 +94,7 @@ class _ServerResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, ServerGetSession))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .accept(MediaType.JSON)
                     .get()
             }
@@ -108,7 +108,7 @@ class _ServerResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, ServerRefreshSession))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .accept(MediaType.JSON)
                     .post()
             }

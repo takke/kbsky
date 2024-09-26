@@ -43,7 +43,7 @@ class _ConvoResource(
         return proceedGet(
             BlueskyTypes.ConvoGetConvo,
             request.toMap(),
-            request.bearerToken,
+            request.authorizationHeader,
         )
     }
 
@@ -54,7 +54,7 @@ class _ConvoResource(
         return proceedGet(
             BlueskyTypes.ConvoGetConvoForMembers,
             request.toMap(),
-            request.bearerToken,
+            request.authorizationHeader,
         )
     }
 
@@ -65,7 +65,7 @@ class _ConvoResource(
         return proceedGet(
             BlueskyTypes.ConvoGetLog,
             request.toMap(),
-            request.bearerToken
+            request.authorizationHeader
         )
     }
 
@@ -76,7 +76,7 @@ class _ConvoResource(
         return proceedGet(
             BlueskyTypes.ConvoGetMessages,
             request.toMap(),
-            request.bearerToken,
+            request.authorizationHeader,
         )
     }
 
@@ -87,7 +87,7 @@ class _ConvoResource(
         return proceedGet(
             BlueskyTypes.ConvoListConvos,
             request.toMap(),
-            request.bearerToken,
+            request.authorizationHeader,
         )
     }
 
@@ -98,7 +98,7 @@ class _ConvoResource(
         return proceedPost(
             BlueskyTypes.ConvoSendMessage,
             request.toMappedJson(),
-            request.bearerToken,
+            request.authorizationHeader,
         )
     }
 
@@ -109,7 +109,7 @@ class _ConvoResource(
         return proceedPost(
             BlueskyTypes.ConvoUpdateRead,
             request.toMappedJson(),
-            request.bearerToken,
+            request.authorizationHeader,
         )
     }
 
@@ -120,7 +120,7 @@ class _ConvoResource(
         return proceedPost(
             BlueskyTypes.ConvoMuteConvo,
             request.toMappedJson(),
-            request.bearerToken,
+            request.authorizationHeader,
         )
     }
 
@@ -131,7 +131,7 @@ class _ConvoResource(
         return proceedPost(
             BlueskyTypes.ConvoUnmuteConvo,
             request.toMappedJson(),
-            request.bearerToken,
+            request.authorizationHeader,
         )
     }
 
@@ -142,7 +142,7 @@ class _ConvoResource(
         return proceedPost(
             BlueskyTypes.ConvoDeleteMessageForSelf,
             request.toMappedJson(),
-            request.bearerToken,
+            request.authorizationHeader,
         )
     }
 
@@ -153,20 +153,20 @@ class _ConvoResource(
         return proceedPost(
             BlueskyTypes.ConvoLeaveConvo,
             request.toMappedJson(),
-            request.bearerToken,
+            request.authorizationHeader,
         )
     }
 
     private inline fun <reified T> proceedGet(
         id: String,
         requestMap: Map<String, Any>,
-        bearerToken: String,
+        authorizationHeader: String,
     ): Response<T> {
         return proceed {
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, id))
-                    .header("Authorization", bearerToken)
+                    .header("Authorization", authorizationHeader)
                     .header("Atproto-Proxy", "did:web:api.bsky.chat#bsky_chat")
                     .accept(MediaType.JSON)
                     .queries(requestMap)
@@ -178,13 +178,13 @@ class _ConvoResource(
     private inline fun <reified T> proceedPost(
         id: String,
         requestMappedJson: String,
-        bearerToken: String
+        authorizationHeader: String
     ): Response<T> {
         return proceed {
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, id))
-                    .header("Authorization", bearerToken)
+                    .header("Authorization", authorizationHeader)
                     .header("Atproto-Proxy", "did:web:api.bsky.chat#bsky_chat")
                     .accept(MediaType.JSON)
                     .json(requestMappedJson)

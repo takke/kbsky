@@ -79,7 +79,7 @@ class _GraphResource(
 
                 HttpRequest()
                     .url(xrpc(config, RepoCreateRecord))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
                     .post()
@@ -102,7 +102,7 @@ class _GraphResource(
 
                 HttpRequest()
                     .url(xrpc(config, RepoDeleteRecord))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
                     .post()
@@ -118,7 +118,7 @@ class _GraphResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, GraphGetFollowers))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
@@ -134,7 +134,7 @@ class _GraphResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, GraphGetFollows))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
@@ -150,7 +150,7 @@ class _GraphResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, GraphGetKnownFollowers))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
@@ -166,7 +166,7 @@ class _GraphResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, GraphGetMutes))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
@@ -182,7 +182,7 @@ class _GraphResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, GraphMuteActor))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())
                     .post()
@@ -198,7 +198,7 @@ class _GraphResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, GraphUnmuteActor))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())
                     .post()
@@ -221,7 +221,7 @@ class _GraphResource(
 
                 HttpRequest()
                     .url(xrpc(config, RepoCreateRecord))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
                     .post()
@@ -244,7 +244,7 @@ class _GraphResource(
 
                 HttpRequest()
                     .url(xrpc(config, RepoDeleteRecord))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
                     .post()
@@ -260,7 +260,7 @@ class _GraphResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, GraphGetBlocks))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
@@ -281,7 +281,7 @@ class _GraphResource(
 
                 HttpRequest()
                     .url(xrpc(config, RepoCreateRecord))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
                     .post()
@@ -356,7 +356,7 @@ class _GraphResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, GraphGetList))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
@@ -370,7 +370,7 @@ class _GraphResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, GraphGetLists))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
@@ -391,7 +391,7 @@ class _GraphResource(
 
                 HttpRequest()
                     .url(xrpc(config, RepoCreateRecord))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
                     .post()
@@ -412,7 +412,7 @@ class _GraphResource(
 
                 HttpRequest()
                     .url(xrpc(config, RepoDeleteRecord))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
                     .post()

@@ -8,7 +8,7 @@ import kotlin.io.encoding.ExperimentalEncodingApi
 open class AuthRequest(
     val accessJwt: String
 ) {
-    val bearerToken: String
+    val authorizationHeader: String
         get() = "Bearer $accessJwt"
 
     val did: String

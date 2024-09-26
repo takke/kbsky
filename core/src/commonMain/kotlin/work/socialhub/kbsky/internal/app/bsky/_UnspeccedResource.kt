@@ -24,7 +24,7 @@ class _UnspeccedResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, UnspeccedGetPopular))
-                    .header("Authorization", request.bearerToken)
+                    .header("Authorization", request.authorizationHeader)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
