@@ -167,8 +167,8 @@ object _InternalUtility {
 
     fun HttpRequest.setTimeouts(config: NetworkConfig) = also {
 
-        this.requestTimeout = config.requestTimeout
-        this.connectionTimeout = config.connectionTimeout
-        this.socketTimeout = config.socketTimeout
+        this.requestTimeoutMillis = config.requestTimeoutMillis
+        this.connectTimeoutMillis = config.connectTimeoutMillis
+        this.socketTimeoutMillis = config.socketTimeoutMillis
     }
 }
