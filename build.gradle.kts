@@ -16,6 +16,7 @@ allprojects {
     version = "0.4.0-SNAPSHOT"
 
     repositories {
+        mavenLocal()
         mavenCentral()
         // Repsy.io repository for snapshot packages.
         // maven { url = uri("https://repo.repsy.io/mvn/uakihir0/public") }
