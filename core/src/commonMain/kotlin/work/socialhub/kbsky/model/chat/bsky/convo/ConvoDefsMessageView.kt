@@ -15,7 +15,7 @@ data class ConvoDefsMessageView(
     val text: String,
     val facets: List<RichtextFacet>? = null,
     val embed: RecordUnion? = null,
-    val reactions: List<ConvoDefsReactionView>,
+    val reactions: List<ConvoDefsReactionView> = emptyList(),
     val sender: ConvoDefsMessageViewSender,
     val sentAt: String,
 ) : ConvoDefsMessageUnion() {
