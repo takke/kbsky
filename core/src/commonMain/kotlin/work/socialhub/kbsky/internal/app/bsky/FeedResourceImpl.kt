@@ -21,6 +21,7 @@ import work.socialhub.kbsky.BlueskyTypes.FeedGetQuotes
 import work.socialhub.kbsky.BlueskyTypes.FeedGetRepostedBy
 import work.socialhub.kbsky.BlueskyTypes.FeedGetSuggestedFeeds
 import work.socialhub.kbsky.BlueskyTypes.FeedGetTimeline
+import work.socialhub.kbsky.BlueskyTypes.FeedSearchPostsV2
 import work.socialhub.kbsky.BlueskyTypes.FeedLike
 import work.socialhub.kbsky.BlueskyTypes.FeedPost
 import work.socialhub.kbsky.BlueskyTypes.FeedPostgate
@@ -72,6 +73,8 @@ import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedRepostRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedRepostResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedSearchPostsRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedSearchPostsResponse
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedSearchPostsV2Request
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedSearchPostsV2Response
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedThreadgateRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedThreadgateResponse
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoCreateRecordRequest
@@ -345,6 +348,34 @@ class FeedResourceImpl(
     ): Response<FeedSearchPostsResponse> {
         return toBlocking {
             searchPosts(request)
+        }
+    }
+
+    override suspend fun searchPostsV2(
+        request: FeedSearchPostsV2Request
+    ): Response<FeedSearchPostsV2Response> {
+
+        return proceed {
+            httpRequest(config)
+                .url(xrpc(config, FeedSearchPostsV2))
+                .accept(MediaType.JSON)
+                .queries(request.toMap())
+                .also { req ->
+                    // Array parameters must be expanded as key=v1&key=v2,
+                    // so they take a dedicated path that calls query() for each element.
+                    request.toListParams().forEach { (key, values) ->
+                        values.forEach { req.query(key, it) }
+                    }
+                }
+                .getWithAuth(request.auth)
+        }
+    }
+
+    override fun searchPostsV2Blocking(
+        request: FeedSearchPostsV2Request
+    ): Response<FeedSearchPostsV2Response> {
+        return toBlocking {
+            searchPostsV2(request)
         }
     }
 

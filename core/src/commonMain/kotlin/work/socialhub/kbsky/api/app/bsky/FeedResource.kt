@@ -46,6 +46,8 @@ import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedRepostRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedRepostResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedSearchPostsRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedSearchPostsResponse
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedSearchPostsV2Request
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedSearchPostsV2Response
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedThreadgateRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedThreadgateResponse
 import work.socialhub.kbsky.api.entity.share.Response
@@ -202,6 +204,18 @@ interface FeedResource {
     fun searchPostsBlocking(
         request: FeedSearchPostsRequest
     ): Response<FeedSearchPostsResponse>
+
+    /**
+     * Find posts matching a search query or filters, returning search hits for matching post records.
+     */
+    suspend fun searchPostsV2(
+        request: FeedSearchPostsV2Request
+    ): Response<FeedSearchPostsV2Response>
+
+    @JsExport.Ignore
+    fun searchPostsV2Blocking(
+        request: FeedSearchPostsV2Request
+    ): Response<FeedSearchPostsV2Response>
 
     /**
      * Get information about a specific feed offered by a feed generator, such as its online status.

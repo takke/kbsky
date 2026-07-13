@@ -11,6 +11,8 @@ data class FeedSearchPostsRequest(
     override val auth: AuthProvider,
     /** Search query string; syntax, phrase, boolean, and faceting is unspecified, but Lucene query syntax is recommended. */
     var q: String,
+    /** Specifies the ranking order of results. ("top" or "latest", default: "latest") */
+    var sort: String? = null,
     // [1-100] default: 25
     var limit: Int? = null,
     /** Optional pagination mechanism; may not necessarily allow scrolling through entire result set. */
@@ -20,6 +22,7 @@ data class FeedSearchPostsRequest(
     override fun toMap(): Map<String, Any> {
         return mutableMapOf<String, Any>().also {
             it.addParam("q", q)
+            it.addParam("sort", sort)
             it.addParam("limit", limit)
             it.addParam("cursor", cursor)
         }
